@@ -1,10 +1,15 @@
 <div>
-	<input type="file" name="fichier"><br>
-	<input type="text" name="titre" placeholder="Titre"><br>
-	<input type="text" name="artiste" placeholder="Artiste"><br>
-	<input type="text" name="genre" placeholder="Genre"><br>
-	<input type="date" name="annee" placeholder="Année"><button>Calendrier</button><br>
-	<input type="text" name="album" placeholder="Album"><br>
-	<input type="image" name="image"><br>
-	<button>Ajouter</button>
+	<form action="./" method="post" enctype="multipart/form-data">
+		<input type="file" name="chanson"> <br> 
+		<input type="text" name="titre" placeholder="Titre"><br> 
+		<input type="text" name="artiste" placeholder="Artiste"><br> 
+		<input type="text" name="genre" placeholder="Genre"><br> 
+		<input type="date" name="annee" placeholder="Année">
+		<button>Calendrier</button>
+		<br> 
+		<input type="text" name="album" placeholder="Album"><br>
+		<input type="text" name="url" placeholder="Lien wiki"><br>
+		<input type="file" name="image"/><br>
+		<button type="submit" name="action" value="addSong" >Ajouter</button>
+	</form>
 </div>
