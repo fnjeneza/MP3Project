@@ -60,8 +60,8 @@ function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $du
 		addArtist($bdd, $artiste, $url_wiki);	// sinon ajoute l'artiste dans la bdd
 	}
 	
-	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, image, duree, chemin, date_ajout)
-		VALUES ('$titre','$artiste','$genre', $annee, '$album', '$url_image', $duree, '$url_chanson', CURDATE() )";
+	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, image, chemin, date_ajout)
+		VALUES ('$titre','$artiste','$genre', $annee, '$album', '$url_image', '$url_chanson', CURDATE() )";
 	
 	$bdd->query($req);
 }

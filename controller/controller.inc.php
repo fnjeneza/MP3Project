@@ -58,7 +58,6 @@ if(!empty($action)){
 				move_uploaded_file($_FILES['image']['tmp_name'], $url_image);
 			}
 			
-			$duree=30;
 			
 			//ajout de la chanson
 			addSong($bdd,
@@ -68,7 +67,6 @@ if(!empty($action)){
 				$_POST['annee'],
 				$_POST['album'],
 				$url_image,
-				$duree,
 				$url_chanson,
 				$_POST['url']);
 			break;
