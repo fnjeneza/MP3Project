@@ -1,5 +1,8 @@
 <?php 
-	
-	//inclusion de la vue player
-	require_once 'vues/player.php';
+//session_start();	//ouverture de la session
+
+require_once 'controller/controller.inc.php';
+
+//require_once 'vues/player.php';
+
 ?>
