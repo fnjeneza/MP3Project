@@ -77,5 +77,46 @@ function songExist($bdd, $titre, $artiste){
 	return $bdd->query($req)->num_rows == 0 ?  false :  true;
 }
 
+function addUser($bdd, $nom, $prenom, $pseudo, $sexe, $dateNaiss, $mail, $url_photo){
+    
+    $req="INSERT INTO utilisateur (nom_utilisateur,prenom_utilisateur,pseudo,sexe,date_de_naissance,email,photo)
+                                  VALUES('$nom', '$prenom', '$pseudo', '$sexe', '$dateNaiss', '$mail', '$url_photo')";
+   $bdd->query($req) ;
+}
 
+function deleteSong($bdd, $titre, $artiste){
+    $req="DELETE FROM chanson WHERE titre='$titre' AND artiste='$artiste'";
+    $bdd->query($req);
+}
+
+function deleteArtiste($bdd, $nom){
+    $req="DELETE FROM artiste WHERE nom='$nom'";
+    $bdd->query($req);
+}
+
+function deleteUser($bdd, $pseudo){
+    $req="DELETE FROM utilisateur WHERE pseudo='$pseudo";
+    $bdd->query($req);
+}
+
+function deletePlaylist($bdd, $nom, $pseudo) {
+    $req="DELETE FROM playlist WHERE nom_playlist='$nom' AND pseudo='$pseudo'";
+    $bdd->query($req);
+}
+
+function existUser($bdd, $pseudo){
+    $req="SELECT * FROM utilisateur WHERE pseudo= '$pseudo'";
+    $result=$bdd->query($req);
+    return mysql_num_rows($result)==0 ? false : true;
+}
+
+function connectUser($bdd , $pseudo ,$password){
+    
+    if(!(existUser($bdd, $pseudo))){
+        echo'Bienvenu pseudo ';
+    }
+    else{
+        echo'utilisateur ou mot de passe incorrect!!!';
+    }
+}
 

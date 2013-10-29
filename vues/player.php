@@ -11,7 +11,7 @@
 	<object type="application/x-shockwave-flash" data="vues/dewplayer.swf"
 		width="200" height="20" id="dewplayer" name="dewplayer">
 		<param name="wmode" value="transparent" />
-		<param name="movie" value="vues/dewplayer.swf" />
+		
 		<param name="flashvars" value="mp3=<?php echo $mp3_src ?>" />
 	</object>
 	<br>
