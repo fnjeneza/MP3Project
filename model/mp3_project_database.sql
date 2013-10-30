@@ -100,9 +100,10 @@ CREATE TABLE IF NOT EXISTS `playlist_chanson` (
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `nom_utilisateur` int(255) NOT NULL,
+  `nom_utilisateur` varchar(255) NOT NULL,
   `prenom_utilisateur` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
+  `sexe` varchar(5) NOT NULL,
   `password` varchar(255) NOT NULL,
   `date_de_naissance` date NOT NULL,
   `email` varchar(255) NOT NULL,
