@@ -1,7 +1,7 @@
 <?php
 
 
-/*
+/**
  * Ouverture d'une connexion à la bdd
  */
 function openConnection(){
@@ -12,7 +12,7 @@ function openConnection(){
 	return $db;
 }
 
-/*
+/**
  * fermeture de la connexion
  */
 function closeConnection($bdd){
@@ -49,18 +49,17 @@ function addArtist($bdd, $artiste, $url){
  * @param unknown_type $annee	annee de sortie
  * @param unknown_type $album	album de la chanson
  * @param unknown_type $date_ajout	date d'ajout
- * @param unknown_type $image	image de l'album ou de l'artiste
- * @param unknown_type $duree	duree du morceau
- * @param unknown_type $chemin	chemin du morceau sur le serveur
- * @param unknown_type $url	lien wiki de l'artiste
+ * @param unknown_type $url_image	image de l'album ou de l'artiste
+ * @param unknown_type $url_chanson	chemin du morceau sur le serveur
+ * @param unknown_type $url_artiste	lien wiki de l'artiste
  */
-function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $duree, $url_chanson, $url_wiki ){
+function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $url_chanson, $url_artiste ){
 	
 	if(!artistExist($bdd, $artiste)){		//verfie si l'artiste existe deja dans la bdd
-		addArtist($bdd, $artiste, $url_wiki);	// sinon ajoute l'artiste dans la bdd
+		addArtist($bdd, $artiste, $url_artiste);	// sinon ajoute l'artiste dans la bdd
 	}
 	
-	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, image, chemin, date_ajout)
+	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, url_image, url_chanson, date_d_ajout)
 		VALUES ('$titre','$artiste','$genre', $annee, '$album', '$url_image', '$url_chanson', CURDATE() )";
 	
 	$bdd->query($req);
@@ -108,7 +107,7 @@ function deleteArtiste($bdd, $nom){
 }
 
 function deleteUser($bdd, $pseudo){
-    $req="DELETE FROM utilisateur WHERE pseudo='$pseudo";
+    $req="DELETE FROM utilisateur WHERE pseudo='$pseudo'";
     $bdd->query($req);
 }
 

@@ -2,8 +2,17 @@
 session_start();	//ouverture de la session
 
 require_once 'controller/controller.inc.php';
-require_once 'vues/new_user.html';
-
-//require_once 'vues/player.php';
-
 ?>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>MP3Project</title>
+	</head>
+	<body>
+		<?php 
+			require_once 'vues/new_user.html';
+			
+			//require_once 'vues/add_song.html';
+		?>
+	</body>
+</html>
