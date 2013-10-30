@@ -77,12 +77,24 @@ function songExist($bdd, $titre, $artiste){
 	return $bdd->query($req)->num_rows == 0 ?  false :  true;
 }
 
-function addUser($bdd, $nom, $prenom, $pseudo, $password, $sexe, $dateNaiss, $mail, $url_photo){
+/**
+ * Ajout d'un utilisateur 
+ * @param unknown_type $bdd
+ * @param unknown_type $nom
+ * @param unknown_type $prenom
+ * @param unknown_type $pseudo
+ * @param unknown_type $sexe
+ * @param unknown_type $password
+ * @param unknown_type $dateNaiss
+ * @param unknown_type $mail
+ * @param unknown_type $url_photo
+ */
+function addUser($bdd, $nom, $prenom, $pseudo, $sexe, $password, $dateNaiss, $mail, $url_photo){
     
-    $req="INSERT INTO utilisateur (nom_utilisateur, prenom_utilisateur, pseudo, password, sexe, date_de_naissance, email, url_photo)
-                                  VALUES('$nom', '$prenom', '$pseudo','$password', '$sexe', CURDATE(), '$mail', '$url_photo')";
+    $req="INSERT INTO utilisateur (nom_utilisateur, prenom_utilisateur, sexe, pseudo, password,  date_de_naissance, email, url_photo)
+                                  VALUES('$nom', '$prenom', '$pseudo', '$sexe', '$password',  STR_TO_DATE('$dateNaiss','%d/%m/%Y'), '$mail', '$url_photo')";
 
-   $bdd->query($req) ;
+ 	$bdd->query($req) ;
 }
 
 function deleteSong($bdd, $titre, $artiste){
@@ -104,11 +116,15 @@ function deletePlaylist($bdd, $nom, $pseudo) {
     $req="DELETE FROM playlist WHERE nom_playlist='$nom' AND pseudo='$pseudo'";
     $bdd->query($req);
 }
-
+/**
+ * Verifie si un utilisateur existe
+ * @param unknown_type $bdd
+ * @param unknown_type $pseudo
+ * @return boolean
+ */
 function existUser($bdd, $pseudo){
     $req="SELECT * FROM utilisateur WHERE pseudo= '$pseudo'";
-    $result=$bdd->query($req);
-    return $result->num_rows==0 ? false : true;
+    return $bdd->query($req)->num_rows==0 ? false : true;
 }
 
 function connectUser($bdd , $pseudo ,$password){
