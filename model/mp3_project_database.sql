@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le: Lun 28 Octobre 2013 à 10:11
+-- Généré le: Mer 30 Octobre 2013 à 15:52
 -- Version du serveur: 5.6.11-log
 -- Version de PHP: 5.4.14
 
@@ -39,14 +39,16 @@ CREATE TABLE IF NOT EXISTS `artiste` (
 --
 
 CREATE TABLE IF NOT EXISTS `chanson` (
+  `id` int(11) NOT NULL,
   `titre` varchar(255) NOT NULL,
-  `artiste` varchar(255) NOT NULL,
+  `artiste` varchar(255) CHARACTER SET utf8 NOT NULL,
   `annee` int(11) NOT NULL,
   `album` varchar(255) NOT NULL,
   `genre` varchar(255) NOT NULL,
   `date_d_ajout` date NOT NULL,
-  `image` varchar(255) NOT NULL,
-  PRIMARY KEY (`titre`,`artiste`)
+  `url_image` varchar(255) NOT NULL,
+  `url_chanson` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `titre_commentaire` varchar(255) NOT NULL,
   `intitule` text NOT NULL,
   `date_commentaire` date NOT NULL,
-  `titre_chanson` varchar(255) NOT NULL,
+  `id_chanson` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -72,10 +74,24 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 --
 
 CREATE TABLE IF NOT EXISTS `playlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_playlist` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
-  PRIMARY KEY (`nom_playlist`,`pseudo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `playlist_chanson`
+--
+
+CREATE TABLE IF NOT EXISTS `playlist_chanson` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_playlist` int(11) NOT NULL,
+  `id_chanson` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -87,10 +103,10 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom_utilisateur` int(255) NOT NULL,
   `prenom_utilisateur` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
-  `sexe` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `date_de_naissance` date NOT NULL,
   `email` varchar(255) NOT NULL,
-  `photo` varchar(255) NOT NULL,
+  `url_photo` varchar(255) NOT NULL,
   PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
