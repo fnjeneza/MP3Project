@@ -79,8 +79,8 @@ function songExist($bdd, $titre, $artiste){
 
 function addUser($bdd, $nom, $prenom, $pseudo, $password, $sexe, $dateNaiss, $mail, $url_photo){
     
-    $req="INSERT INTO utilisateur (nom_utilisateur,prenom_utilisateur,pseudo, password,sexe,date_de_naissance,email,photo)
-                                  VALUES('$nom', '$prenom', '$pseudo','$password', '$sexe', '$dateNaiss', '$mail', '$url_photo')";
+    $req="INSERT INTO utilisateur (nom_utilisateur, prenom_utilisateur,pseudo, password,sexe,date_de_naissance,email,url_photo)
+                                  VALUES('$nom', '$prenom', '$pseudo','$password', '$sexe', CURDATE(), '$mail', '$url_photo')";
    $bdd->query($req) ;
 }
 
