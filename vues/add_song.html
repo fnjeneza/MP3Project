@@ -1,6 +1,6 @@
 <div>
 	<form action="./" method="post" enctype="multipart/form-data">
-		Fichier mp3 <input type="file" name="chanson"> <br> 
+		Fichier mp3 <input type="file" name="chanson" accept="audio/*"> <br> 
 		<input type="text" name="titre" placeholder="Titre"><br> 
 		<input type="text" name="artiste" placeholder="Artiste"><br> 
 		<input type="text" name="genre" placeholder="Genre"><br> 
@@ -8,7 +8,7 @@
 		<br> 
 		<input type="text" name="album" placeholder="Album"><br>
 		<input type="text" name="url" placeholder="Lien wiki de l'artiste"><br>
-		Image de l'album ou de l'artiste <input type="file" name="image" /><br>
+		Image de l'album ou de l'artiste <input type="file" name="image" accept="image/*"/><br>
 		<button type="submit" name="action" value="addSong" >Ajouter</button>
 	</form>
 </div>
