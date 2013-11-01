@@ -8,6 +8,9 @@ require_once 'model/model.inc.php';
 
 $bdd=openConnection();		//ouverture d'une connexion
 
+$chansons=getSongs($bdd);
+//print_r($chansons);
+
 //récupération de l'action de l'utilisateur
 if(isset($_GET['action']) ){
 	$action=$_GET['action'] ;
@@ -141,9 +144,19 @@ if(!empty($action)){
 				
 			}
 			break;
+                        
+                        case 'play':
+                            $result=  getOneSong($bdd, $_GET['id'])->fetch_assoc();
+                             
+                           $_SESSION['url_image']=$result['url_image'];
+                           $_SESSION['url_chanson']=$result['url_chanson'];
+                           
+                            break;
 
+                        
 	}
 }
+
 
 
 closeConnection($bdd); //fermeture de la connexion

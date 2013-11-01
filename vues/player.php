@@ -1,6 +1,6 @@
 
 <div>
-	<img alt="Nom de l'artiste" src="<?php echo $img_src ?>"
+	<img alt="Nom de l'artiste" src="<?php echo $_SESSION['url_image'] ?>"
 		width="100" height="100"><br> 
 	Titre<br>
 	<a href="http://www.wikipedia.fr" target="_blank">Artiste</a><br> 
@@ -12,7 +12,7 @@
 		width="200" height="20" id="dewplayer" name="dewplayer">
 		<param name="wmode" value="transparent" />
 		
-		<param name="flashvars" value="mp3=<?php echo $mp3_src ?>" />
+		<param name="flashvars" value="mp3=<?php echo $_SESSION['url_chanson'] ?>" />
 	</object>
 	<br>
 	<button>Download</button>

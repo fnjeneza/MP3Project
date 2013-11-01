@@ -137,3 +137,14 @@ function connectUser($bdd , $pseudo ,$password){
     return $bdd->query($req)->num_rows==0 ? false : true;
 }
 
+function  getSongs($bdd){
+    $req= "SELECT id ,titre,artiste FROM chanson ";
+     return $bdd->query($req);
+    
+}
+
+
+function getOneSong($bdd, $id){
+    $req="SELECT url_image,url_chanson FROM chanson where id=$id";
+    return $bdd->query($req);
+}
