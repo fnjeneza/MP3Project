@@ -71,6 +71,7 @@ if(!empty($action)){
 					$url_image,
 					$url_chanson,
 					$_POST['url']);
+			
 			break;
 
 		case 'addUser':
