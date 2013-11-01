@@ -126,13 +126,15 @@ function existUser($bdd, $pseudo){
     return $bdd->query($req)->num_rows==0 ? false : true;
 }
 
+/**
+ * Connexion de l'utilisateur
+ * @param unknown_type $bdd
+ * @param unknown_type $pseudo
+ * @param unknown_type $password
+ */
 function connectUser($bdd , $pseudo ,$password){
     
-    if(!(existUser($bdd, $pseudo))){
-        echo'Bienvenu pseudo ';
-    }
-    else{
-        echo'utilisateur ou mot de passe incorrect!!!';
-    }
+    $req =" SELECT * FROM utilisateur WHERE pseudo ='$pseudo' AND password ='$password'";
+    return $bdd->query($req)->num_rows==0 ? false : true;
 }
 
