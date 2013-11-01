@@ -19,8 +19,9 @@ elseif (isset($_POST['action']) ){
 if(!empty($action)){
 	switch ($action){
 		case 'addSong':
-				
+			
 			$url_image=BASE_IMG."index.jpeg";	//chemin de l'image par defaut
+                        //$url_chanson;
 				
 				
 			//verifie si la chanson existe deja dans la bdd
@@ -31,15 +32,18 @@ if(!empty($action)){
 				
 			//enregistrement du fichier son
 			if(isset($_FILES['chanson']) && !$_FILES['chanson']['error']){
-				
+                            
 				//si le fichier n'est pas de type mp3
-				if($_FILES['chanson']['type']!="audio/mpeg"){
-					break; 	
-				}
-				$url_chanson=BASE_MP3.$_POST['titre'].$_POST['artiste'].".mp3";
+				if($_FILES['chanson']['type']=="audio/mpeg" || $_FILES['chanson']['type']=="audio/mp3"){
+					
+			       $url_chanson=BASE_MP3.$_POST['titre'].$_POST['artiste'].".mp3";
 				move_uploaded_file($_FILES['chanson']['tmp_name'], $url_chanson);
+                                    } 
+                                    else{
+                                    break;
+                                    }
 			}
-				
+		
 			//enregistrement du fichier image
 			if(isset($_FILES['image']) && !$_FILES['image']['error']){
 
@@ -60,7 +64,7 @@ if(!empty($action)){
 				move_uploaded_file($_FILES['image']['tmp_name'], $url_image);
 			}
 				
-				
+		echo $url_chanson;
 			//ajout de la chanson
 			addSong($bdd,
 					$_POST['titre'],
@@ -106,6 +110,7 @@ if(!empty($action)){
 			}
 			
 			// ajout d'un utilisateur
+                   
 			addUser($bdd,
 					$_POST['nom'],
 					$_POST['prenom'],

@@ -8,7 +8,7 @@
 		<input type="password" name="password" placeholder='Mot de passe'><br>
 		<button type="submit" name="action" value="connectUser">Connexion</button>
 		<a href="./" title="creer un compte"> creer un compte</a>
-		
+                
 	<?php
 		}
 		else{ 

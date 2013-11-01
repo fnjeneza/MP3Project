@@ -91,7 +91,7 @@ function songExist($bdd, $titre, $artiste){
 function addUser($bdd, $nom, $prenom, $pseudo, $sexe, $password, $dateNaiss, $mail, $url_photo){
     
     $req="INSERT INTO utilisateur (nom_utilisateur, prenom_utilisateur, sexe, pseudo, password,  date_de_naissance, email, url_photo)
-                                  VALUES('$nom', '$prenom', '$pseudo', '$sexe', '$password',  STR_TO_DATE('$dateNaiss','%d/%m/%Y'), '$mail', '$url_photo')";
+                                  VALUES('$nom', '$prenom', '$sexe', '$pseudo', '$password',  STR_TO_DATE('$dateNaiss','%d/%m/%Y'), '$mail', '$url_photo')";
 
  	$bdd->query($req) ;
 }
@@ -123,7 +123,7 @@ function deletePlaylist($bdd, $nom, $pseudo) {
  */
 function existUser($bdd, $pseudo){
     $req="SELECT * FROM utilisateur WHERE pseudo= '$pseudo'";
-    return $bdd->query($req)->num_rows==0 ? false : true;
+    return $bdd->query($req)->num_rows===0 ? false : true;
 }
 
 /**

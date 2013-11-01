@@ -10,9 +10,10 @@ require_once 'controller/controller.inc.php';
 	</head>
 	<body>
 		<?php 
-			//require_once 'vues/headerBar.php';
+	
+                require_once 'vues/add_song.html';
 			
-			require_once 'vues/add_song.html';
+	        //require_once 'vues/add_song.html';
 		?>
 	</body>
 </html>
