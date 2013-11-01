@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `artiste` (
 --
 
 CREATE TABLE IF NOT EXISTS `chanson` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `artiste` varchar(255) NOT NULL,
   `annee` int(11) NOT NULL,

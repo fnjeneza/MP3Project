@@ -8,7 +8,7 @@ function openConnection(){
 	$db=new mysqli(HOSTNAME, USERNAME, PASSWORD, DBNAME);
 	if($db->error){
 		die("Erreur de connexion".$db->error);
-	}	
+	}
 	return $db;
 }
 
@@ -26,7 +26,7 @@ function closeConnection($bdd){
  */
 function artistExist($bdd, $artiste){
 	$req="SELECT nom FROM artiste WHERE nom='$artiste'";
-	return $bdd->query($req)->num_rows == 0 ? false : true;
+	return empty($bdd->query($req)->num_rows) || $bdd->query($req)->num_rows === 0 ? false : true;
 }
 
 /**
@@ -61,7 +61,6 @@ function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $ur
 	
 	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, url_image, url_chanson, date_d_ajout)
 		VALUES ('$titre','$artiste','$genre', $annee, '$album', '$url_image', '$url_chanson', CURDATE() )";
-	
 	$bdd->query($req);
 }
 
@@ -73,7 +72,7 @@ function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $ur
  */
 function songExist($bdd, $titre, $artiste){
 	$req="SELECT * FROM chanson WHERE titre='$titre' AND artiste='$artiste'";
-	return $bdd->query($req)->num_rows == 0 ?  false :  true;
+	return empty($bdd->query($req)->num_rows) || $bdd->query($req)->num_rows === 0  ?  false :  true;
 }
 
 /**
