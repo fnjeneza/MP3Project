@@ -24,8 +24,9 @@ while ($chanson=$chansons->fetch_assoc()) {
     ?>
 </td>
 </tr>
-    
-</table>
+
 <?php
 }
 ?>
+    
+</table>
