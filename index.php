@@ -1,5 +1,5 @@
 <?php 
-session_start();	//ouverture de la session
+ session_start();	//ouverture de la session
 
 require_once 'controller/controller.inc.php';
 ?>
@@ -10,9 +10,9 @@ require_once 'controller/controller.inc.php';
 	</head>
 	<body>
 		<?php 
-			require_once 'vues/new_user.html';
+			//require_once 'vues/headerBar.php';
 			
-			//require_once 'vues/add_song.html';
+			require_once 'vues/add_song.html';
 		?>
 	</body>
 </html>

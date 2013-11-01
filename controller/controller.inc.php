@@ -20,18 +20,22 @@ if(!empty($action)){
 	switch ($action){
 		case 'addSong':
 				
-			$url_chanson;
 			$url_image=BASE_IMG."index.jpeg";	//chemin de l'image par defaut
 				
 				
 			//verifie si la chanson existe deja dans la bdd
 			if(songExist($bdd, $_POST['titre'],	$_POST['artiste'])){
-				echo $message="Fichier existe déjà";
+				$message="Fichier existe déjà";
 				break;
 			}
 				
 			//enregistrement du fichier son
 			if(isset($_FILES['chanson']) && !$_FILES['chanson']['error']){
+				
+				//si le fichier n'est pas de type mp3
+				if($_FILES['chanson']['type']!="audio/mpeg"){
+					break; 	
+				}
 				$url_chanson=BASE_MP3.$_POST['titre'].$_POST['artiste'].".mp3";
 				move_uploaded_file($_FILES['chanson']['tmp_name'], $url_chanson);
 			}
@@ -75,7 +79,7 @@ if(!empty($action)){
 			 * verifie si l'utilisateur existe
 			 */
 			if(existUser($bdd,$_POST['pseudo'])){
-				$message='Ce pseudo existe d�ja';
+				$message='Ce pseudo existe déja';
 				break;
 			}
 
@@ -99,7 +103,8 @@ if(!empty($action)){
 				$url_photo=BASE_IMG.$_POST['pseudo'].$ext;
 				move_uploaded_file($_FILES['photo']['tmp_name'], $url_photo);
 			}
-				
+			
+			// ajout d'un utilisateur
 			addUser($bdd,
 					$_POST['nom'],
 					$_POST['prenom'],
@@ -110,6 +115,26 @@ if(!empty($action)){
 					$_POST['mail'],
 					$url_photo);
 
+			break;
+			
+		case 'connectUser':
+			if(connectUser($bdd, $_POST['pseudo'], $_POST['password'])){
+				
+				$_SESSION['isConnected']=true;
+				$_SESSION['pseudo']=$_POST['pseudo'];
+			}
+			else{
+				//message d'erreur à afficher
+				$message="Pseudo ou mot de passe incorrect";
+			}
+			break;
+			
+		case 'deconnectUser':
+			if(isset($_SESSION['isConnected']) && $_SESSION['isConnected']){
+
+				session_unset();	//destruction des variables de la  session
+				
+			}
 			break;
 
 	}
