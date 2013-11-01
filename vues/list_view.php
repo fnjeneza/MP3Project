@@ -6,27 +6,20 @@
 </tr>
 
 <?php
-
 while ($chanson=$chansons->fetch_assoc()) {
-
-
 ?>
+
 <tr>
-    <td><a href="./?id=<?=$chanson['id']?>&action=play">
-    <?php
-        echo $chanson['titre']; 
-    ?>
-        </a>  
-</td>
-<td>
-    <?php
-       echo $chanson['artiste']; 
-    ?>
-</td>
+    <td>
+    	<a href="./?id=<?=$chanson['id']?>&action=play"> <?=$chanson['titre']; ?>   </a>  
+	</td>
+	<td>
+	    <?= $chanson['artiste'];?>
+	</td>
 </tr>
 
 <?php
-}
+ } 
 ?>
     
 </table>

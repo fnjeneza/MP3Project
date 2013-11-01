@@ -145,6 +145,6 @@ function  getSongs($bdd){
 
 
 function getOneSong($bdd, $id){
-    $req="SELECT url_image,url_chanson FROM chanson where id=$id";
+    $req="SELECT artiste, titre, url_image, url_chanson, genre, album, annee FROM chanson where id=$id";
     return $bdd->query($req);
 }
