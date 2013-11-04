@@ -11,7 +11,7 @@ require_once 'controller/controller.inc.php';
 	<body>
 		<?php 
 	
-                //require_once 'vues/add_song.html';
+                require_once 'vues/add_song.html';
 			
 	        	//require_once 'vues/add_song.html';
                 require_once 'vues/player.php';

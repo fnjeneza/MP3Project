@@ -6,10 +6,8 @@
 </tr>
 
 <?php
-
+print_r($chansons);
 while ($chanson=$chansons->fetch_assoc()) {
-
-
 ?>
 <tr>
     <td><a href="./?id=<?=$chanson['id']?>&action=play">

@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `playlist_chanson` (
   `id_chanson` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY(`id_chanson`) REFERENCES chanson(`id`)
+  FOREIGN KEY(`id_playlist`) REFERENCES playlist(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 

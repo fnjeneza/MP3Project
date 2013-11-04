@@ -9,7 +9,7 @@ require_once 'model/model.inc.php';
 $bdd=openConnection();		//ouverture d'une connexion
 
 $chansons=getSongs($bdd);
-//print_r($chansons);
+print_r($chansons);
 
 //récupération de l'action de l'utilisateur
 if(isset($_GET['action']) ){

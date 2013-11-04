@@ -148,3 +148,49 @@ function getOneSong($bdd, $id){
     $req="SELECT url_image,url_chanson FROM chanson where id=$id";
     return $bdd->query($req);
 }
+/**
+ * ajout d'un commentaire
+ * @param type $bdd
+ * @param type $pseudo
+ * @param type $titre
+ * @param type $intitule
+ * @param type $date
+ * @param type $id_chanson
+ */
+function  addComment($bdd, $pseudo, $titre, $intitule, $date, $id_chanson){
+    $req="INSERT INTO commentaire (pseudo_commentateur, titre_commentaire, intitule, date_commentaire, id_chanson)
+                            VALUES('$pseudo', '$titre', '$intitule', '$date', '$id_chanson')";
+    $bdd->query($req);
+}
+
+/**
+ * Ajoute une chanson a la playlist 
+ * @param type $bdd
+ * @param type $id_playlist
+ * @param type $id_chanson
+ */
+function addSongToPlaylist($bdd, $id_playlist, $id_chanson){
+    $req="INSERT INTO playlist_chanson (id_playlist, id_chanson)
+                                VALUES ('$id_playlist', '$id_chanson')";
+    $bdd->query($req);   
+}
+
+/**
+ * Supprime un commentaire
+ * @param type $bdd
+ * @param type $id_comment
+ */
+function deleteComment($bdd, $id_comment){
+    $req="DELETE FROM commentaire WHERE id='$id_comment'";
+    $bdd->query($req);
+}
+/**
+ * supprime une chanson de la playlist
+ * @param type $bdd
+ * @param type $id
+ */
+function deletePlaylistSong($bdd, $id ){
+    $req="DELETE FROM playlist_chanson WHERE id='$id'";
+    $bdd->query($req);
+}
+
