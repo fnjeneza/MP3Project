@@ -22,7 +22,7 @@ elseif (isset($_POST['action']) ){
 if(!empty($action)){
 	switch ($action){
 		case 'addSong':
-				
+
 			$url_image="multimedia/images/index.jpeg";	//chemin de l'image par defaut
 			//$url_chanson;
 
@@ -38,21 +38,21 @@ if(!empty($action)){
 
 				//si le fichier n'est pas de type mp3
 				if($_FILES['chanson']['type']=="audio/mpeg" || $_FILES['chanson']['type']=="audio/mp3"){
-						
+
 					$path_chanson=BASE_MP3.$_POST['titre'].$_POST['artiste'].".mp3";
 					$url_chanson="multimedia/sounds/".$_POST['titre'].$_POST['artiste'].".mp3";
 					move_uploaded_file($_FILES['chanson']['tmp_name'], $path_chanson);
 				}
 				else{
 					$messageError="Ce type de fichier n'est pas accepté !";
-					
+						
 					break;
 				}
-			
+					
 			}
-		else {
-			$messageError="Erreur de Upload";
-		}
+			else {
+				$messageError="Erreur de Upload";
+			}
 
 			//enregistrement du fichier image
 			if(isset($_FILES['image']) && !$_FILES['image']['error']){
@@ -85,9 +85,9 @@ if(!empty($action)){
 					$url_image,
 					$url_chanson,
 					$_POST['url']);
-					
-					$messageOk="Chanson ajoutée avec succès!";
 				
+			$messageOk="Chanson ajoutée avec succès!";
+
 			break;
 
 		case 'addUser':
@@ -102,7 +102,7 @@ if(!empty($action)){
 
 
 			$url_photo="multimedia/images/userDefault.jpg";
-				
+
 			if(isset($_FILES['photo']) && !$_FILES['photo']['error']){
 
 				switch ($_FILES['photo']['type']){
@@ -120,11 +120,11 @@ if(!empty($action)){
 				$path_photo=BASE_IMG.$_POST['pseudo'].$ext;
 				$url_photo="multimedia/images/".$_POST['pseudo'].$ext;
 				move_uploaded_file($_FILES['photo']['tmp_name'], $path_photo);
-				
+
 			}
-				
+
 			// ajout d'un utilisateur
-			 
+
 			addUser($bdd,
 					$_POST['nom'],
 					$_POST['prenom'],
@@ -134,9 +134,9 @@ if(!empty($action)){
 					$_POST['birthday'],
 					$_POST['mail'],
 					$url_photo);
-               $messageOk="Utilisateur ajouté";
+			$messageOk="Utilisateur ajouté";
 			break;
-				
+
 		case 'connectUser':
 			if(connectUser($bdd, $_POST['pseudo'], $_POST['password'])){
 
@@ -146,11 +146,11 @@ if(!empty($action)){
 			}
 			else{
 				//message d'erreur à afficher
-				
+
 				$messageError="Pseudo ou mot de passe incorrect";
 			}
 			break;
-				
+
 		case 'deconnectUser':
 			if(isset($_SESSION['isConnected']) && $_SESSION['isConnected']){
 
@@ -163,43 +163,34 @@ if(!empty($action)){
 			break;
 
 		case 'play':
-<<<<<<< HEAD
-		   
-			$result=  getOneSong($bdd, $_GET['id'])->fetch_assoc();
-			 
-			$_SESSION['url_image']=$result['url_image'];
-			$_SESSION['url_chanson']=$result['url_chanson'];
-			$_SESSION['id']= $_GET['id'];
-=======
 			$song =  getOneSong($bdd, $_GET['id'])->fetch_assoc();
-			 
+
 			$_SESSION['url_image']=$song['url_image'];
 			$_SESSION['url_chanson']=$song['url_chanson'];
-			
+				
 			$_SESSION['artiste']=$song['artiste'];
 			$_SESSION['titre']=$song['titre'];
 			$_SESSION['genre']=$song['genre'];
 			$_SESSION['url']="#";
 			$_SESSION['album']=$song['album'];
 			$_SESSION['annee']=$song['annee'];
->>>>>>> ec891c92ab91a88e7e8a4977aa05b83de3f524c7
-			 
+
 			break;
-			
-			case 'addPlaylist':
-			
-         addPlaylist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo']) ;
-         $messageOk='Playlist ajouté avec succès';
-         	
+				
+		case 'addPlaylist':
+				
+			addPlaylist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo']) ;
+			$messageOk='Playlist ajouté avec succès';
+
 			break;
-			
-			case'addComment':
-			
-         addComment($bdd, $_SESSION['pseudo'], $_GET['commentaire'] , $_SESSION['id']) 	
-    					
+				
+		case'addComment':
+				
+			addComment($bdd, $_SESSION['pseudo'], $_GET['commentaire'] , $_SESSION['id']);
+				
 			break;
-			
-			
+				
+				
 
 
 	}
@@ -208,7 +199,7 @@ if(!empty($action)){
 if(isset($messageError) && !empty ($messageError)){
 	$msg=$messageError;
 }
-elseif(isset($messsageOk) && !empty($messsageOk) {
+elseif(isset($messsageOk) && !empty($messsageOk)) {
 	$msg=$messsageOk;
 }
 
