@@ -1,7 +1,0 @@
-<form  method="Get" action='./'>
-   <input placeholder="Titre du commentaire" name="titre" type="text"><br>
-	<textarea rows="5" cols="50" name="commentaire" placeholder="commentez cette chanson" >   </textarea> <br>
-	<button type="submit" name='action' value="addComment"> Ajouter </button>
-
-</form>
-	
