@@ -9,6 +9,12 @@
   <option value="pop"> pop </option>
   <option value="rock"> Rock </option>
  </select>
-</ul>
 
+  <li><a href="#" title="ajouter une chanson">Ajouter une chanson</a></li>
+  <li><a href="#" title="créer playlist">Créer playlist</a></li>
+  <?php $result=getPlaylist($bdd, $_SESSION['pseudo'])->fetch_assoc();	?>
+  <table>
+	<tr><td>playlist 1</td></tr>
+  </table>
+  </ul>
 </html>

@@ -181,10 +181,12 @@ if(!empty($action)){
 			
 			case'addComment':
 			
-         addComment($bdd, $_SESSION['pseudo'], $_GET['commentaire'] , $_SESSION['id']) 	
+         addComment($bdd, $_SESSION['pseudo'], $_GET['commentaire'] , $_SESSION['id']) 
+       		
     					
 			break;
 			
+			case '':
 			
 
 

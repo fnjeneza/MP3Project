@@ -1,0 +1,6 @@
+<form method="GET" action="#">
+
+Nom de la playlist<br><input type="text" name="nomplaylist">
+<input type="submit" value="Entrer">
+
+</form>

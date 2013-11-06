@@ -205,8 +205,3 @@ function getPlaylist($bdd, $pseudo) {
 	$req="SELECT nom_playlist FROM playlist WHERE pseudo='$pseudo'";
 	$bdd->query($req);
 }
-
-function getGenre($bdd){
-	$req="SELECT genre FROM chanson ";
-	$bdd->query($req);
-}
