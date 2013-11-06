@@ -163,12 +163,26 @@ if(!empty($action)){
 			break;
 
 		case 'play':
+<<<<<<< HEAD
 		   
 			$result=  getOneSong($bdd, $_GET['id'])->fetch_assoc();
 			 
 			$_SESSION['url_image']=$result['url_image'];
 			$_SESSION['url_chanson']=$result['url_chanson'];
 			$_SESSION['id']= $_GET['id'];
+=======
+			$song =  getOneSong($bdd, $_GET['id'])->fetch_assoc();
+			 
+			$_SESSION['url_image']=$song['url_image'];
+			$_SESSION['url_chanson']=$song['url_chanson'];
+			
+			$_SESSION['artiste']=$song['artiste'];
+			$_SESSION['titre']=$song['titre'];
+			$_SESSION['genre']=$song['genre'];
+			$_SESSION['url']="#";
+			$_SESSION['album']=$song['album'];
+			$_SESSION['annee']=$song['annee'];
+>>>>>>> ec891c92ab91a88e7e8a4977aa05b83de3f524c7
 			 
 			break;
 			
