@@ -6,10 +6,7 @@
 </tr>
 
 <?php
-<<<<<<< HEAD
-print_r($chansons);
-=======
->>>>>>> ec891c92ab91a88e7e8a4977aa05b83de3f524c7
+
 while ($chanson=$chansons->fetch_assoc()) {
 ?>
 
