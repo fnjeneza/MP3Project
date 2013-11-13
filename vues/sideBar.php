@@ -3,13 +3,13 @@
   <li><a href="#" title="rechercher">Rechercher</a></li>
   <li><a href="#" title="dernier ajout">Dernier ajout</a></li>
   <li>Genre</li>
-  <?php $genres=getGenre($bdd)->fetch_assoc(); ?>
+  <?php $genres=getGenre($bdd)->fetch_assoc(); print_r($genres) ?>
   <select name="genre">
   <?php 
   
   foreach($genres as $genre){  	
- 	 echo "<option value='$genre'> $genre['genre']</option>";
-  }
+  ?>	<option value="<?php $genre['genre']?>"> <?=$genre['genre']; ?></option>
+  <?php }
   ?>
  </select>
 <?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] ){ ?>
@@ -21,8 +21,8 @@
   <?php
   
    foreach($results as $result) {
-		echo "<li>$result['nom_playlist']</li>";
-	}
+		?>  <li> <?php echo $result['nom_playlist'] ;?> </li>
+	<?php }
 	
 	?>
   </ul>

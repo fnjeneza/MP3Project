@@ -9,8 +9,6 @@ require_once 'model/model.inc.php';
 $bdd=openConnection();		//ouverture d'une connexion
 
 $chansons=getSongs($bdd);
-print_r($chansons);
-
 //récupération de l'action de l'utilisateur
 if(isset($_GET['action']) ){
 	$action=$_GET['action'] ;
@@ -28,7 +26,7 @@ if(!empty($action)){
 
 
 			//verifie si la chanson existe deja dans la bdd
-			if(songExist($bdd, $_POST['titre'],	$_POST['artiste'])){
+			if(songExist($bdd, $_POST['titre'], $_POST['artiste'])){
 				$messageError="Cette chanson existe déjà";
 				break;
 			}
@@ -44,7 +42,7 @@ if(!empty($action)){
 					move_uploaded_file($_FILES['chanson']['tmp_name'], $path_chanson);
 				}
 				else{
-					$messageError="Ce type de fichier n'est pas accepté !";
+					echo $messageError="Ce type de fichier n'est pas accepté !";
 						
 					break;
 				}
@@ -52,6 +50,7 @@ if(!empty($action)){
 			}
 			else {
 				$messageError="Erreur de Upload";
+                                break;
 			}
 
 			//enregistrement du fichier image
@@ -196,11 +195,6 @@ if(!empty($action)){
 	}
 }
 
-if(isset($messageError) && !empty ($messageError)){
-	$msg=$messageError;
-}
-elseif(isset($messsageOk) && !empty($messsageOk)) {
-	$msg=$messsageOk;
-}
+
 
 closeConnection($bdd); //fermeture de la connexion
