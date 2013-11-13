@@ -123,7 +123,7 @@ if(!empty($action)){
 			}
 
 			// ajout d'un utilisateur
-
+                          
 			addUser($bdd,
 					$_POST['nom'],
 					$_POST['prenom'],
@@ -177,7 +177,7 @@ if(!empty($action)){
 			break;
 				
 		case 'addPlaylist':
-				
+				echo "<<<<<".$_SESSION['pseudo'];
 			addPlaylist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo']) ;
 			$messageOk='Playlist ajouté avec succès';
 
@@ -194,7 +194,9 @@ if(!empty($action)){
 
 	}
 }
-
+  $genres=getGenre($bdd);
+ // var_dump($genres);
+  //print_r($genres);
 
 
 closeConnection($bdd); //fermeture de la connexion

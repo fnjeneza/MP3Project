@@ -203,10 +203,10 @@ function deletePlaylistSong($bdd, $id ){
 
 function getPlaylist($bdd, $pseudo) {
 	$req="SELECT nom_playlist FROM playlist WHERE pseudo='$pseudo'";
-	return$bdd->query($req);
+	return $bdd->query($req);
 }
 
 function getGenre($bdd){
-	$req="SELECT id ,titre,artiste FROM chanson  ";
-	echo $bdd->query($req)->num_rows;
+	$req="SELECT genre FROM chanson ";
+	return $bdd->query($req);
 }
