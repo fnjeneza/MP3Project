@@ -127,8 +127,8 @@ if(!empty($action)){
 			addUser($bdd,
 					$_POST['nom'],
 					$_POST['prenom'],
-					$_POST['sexe'],
 					$_POST['pseudo'],
+					$_POST['sexe'],
 					$_POST['password'],
 					$_POST['birthday'],
 					$_POST['mail'],
@@ -177,10 +177,14 @@ if(!empty($action)){
 			break;
 				
 		case 'addPlaylist':
-				echo "<<<<<".$_SESSION['pseudo'];
-			addPlaylist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo']) ;
-			$messageOk='Playlist ajouté avec succès';
-
+			//Teste si la playlist existe déjà
+			 if(playlistExist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo'])){
+			 	$messageError="La playlist existe déjà";
+			 }
+			 else{
+			 	addPlaylist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo']) ;
+				$messageOk='Playlist ajouté avec succès';
+			 }
 			break;
 				
 		case'addComment':
@@ -194,9 +198,12 @@ if(!empty($action)){
 
 	}
 }
-  $genres=getGenre($bdd);
- // var_dump($genres);
-  //print_r($genres);
-
+  
+//tous les genres existants dans la bdd
+$genres=getGenre($bdd);
+if($_SESSION['isConnected']){
+	//liste de playlist de l'utilisateur
+	$playlists = getPlaylist($bdd, $_SESSION['pseudo']);
+}
 
 closeConnection($bdd); //fermeture de la connexion

@@ -15,7 +15,7 @@
 		width="200" height="20" id="dewplayer" name="dewplayer">
 		<param name="wmode" value="transparent" />
 		
-		<param name="flashvars" value="mp3=<?php echo $_SESSION['url_chanson'] ?>&amp;autostart=1" />
+		<param name="flashvars" value="mp3=<?php echo $_SESSION['url_chanson'] ?>" />
 	</object>
 	<br>
 	<button>Download</button>

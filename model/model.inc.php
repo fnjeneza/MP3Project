@@ -201,6 +201,11 @@ function deletePlaylistSong($bdd, $id ){
     $bdd->query($req);
 }
 
+function playlistExist($bdd, $nom, $pseudo){
+	$req="SELECT nom_playlist FROM playlist WHERE nom_playlist='$nom' AND pseudo='$pseudo'";
+	return empty($bdd->query($req)->num_rows) || $bdd->query($req)->num_rows ===0 ? false : true;
+} 
+
 function getPlaylist($bdd, $pseudo) {
 	$req="SELECT nom_playlist FROM playlist WHERE pseudo='$pseudo'";
 	return $bdd->query($req);
