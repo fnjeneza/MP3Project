@@ -212,6 +212,6 @@ function getPlaylist($bdd, $pseudo) {
 }
 
 function getGenre($bdd){
-	$req="SELECT genre FROM chanson ";
+	$req="SELECT DISTINCT genre FROM chanson ";
 	return $bdd->query($req);
 }
