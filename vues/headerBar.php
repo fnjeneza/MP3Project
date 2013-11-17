@@ -1,4 +1,6 @@
 <FORM METHOD="POST" ACTION="./">
+
+	<h3>MP3Project</h3>
 	<?php
 		if(!isset($_SESSION['isConnected'])){
 	?>
