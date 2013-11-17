@@ -164,9 +164,9 @@ function getOneSong($bdd, $id){
  * @param type $date
  * @param type $id_chanson
  */
-function  addComment($bdd, $pseudo, $intitule, $date, $id_chanson){
+function  addComment($bdd, $pseudo, $intitule, $id_chanson){
     $req="INSERT INTO commentaire (pseudo_commentateur, intitule, date_commentaire, id_chanson)
-                            VALUES('$pseudo',  '$intitule', CURRDATE(), $id_chanson)";
+                            VALUES('$pseudo',  '$intitule', CURDATE(), $id_chanson)";
     $bdd->query($req);
 }
 

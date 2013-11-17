@@ -25,7 +25,7 @@
 		?>  
 		<li> 
 			<?php echo $playlist['nom_playlist'] ;?> 
-			<button>Supprimer</button>
+			<a href="./?action=deletePlaylist&nom=<?= $playlist['nom_playlist']?>" >Supprimer</a>
 		</li>
 	<?php }
 	

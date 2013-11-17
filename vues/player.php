@@ -20,5 +20,4 @@
 	<br>
 	<button>Download</button>
 	<button>Commenter</button>
-	<button>Aimer</button>
 </div>

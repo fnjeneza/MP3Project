@@ -163,7 +163,10 @@ if(!empty($action)){
 
 		case 'play':
 			$song =  getOneSong($bdd, $_GET['id'])->fetch_assoc();
-
+			
+			// id chanson qui est utilisé pour l'ajout des commentaires
+			$_SESSION['id_chanson']=$_GET['id'];
+			
 			$_SESSION['url_image']=$song['url_image'];
 			$_SESSION['url_chanson']=$song['url_chanson'];
 				
@@ -189,19 +192,21 @@ if(!empty($action)){
 				
 		case'addComment':
 				
-			addComment($bdd, $_SESSION['pseudo'], $_GET['commentaire'] , $_SESSION['id']);
-				
+			addComment($bdd, $_SESSION['pseudo'], $_GET['commentaire'] , $_SESSION['id_chanson']);
+			$messageOk = "Commentaire ajouté!";
 			break;
-				
-				
-
+			
+		case 'deletePlaylist':
+			deletePlaylist($bdd, $_GET['nom'], $_SESSION['pseudo']);
+			$messageOk="Playlist ".$_GET['nom']." supprimé";
+			break;
 
 	}
 }
   
 //tous les genres existants dans la bdd
 $genres=getGenre($bdd);
-if($_SESSION['isConnected']){
+if(isset($_SESSION['isConnected']) && $_SESSION['isConnected']){
 	//liste de playlist de l'utilisateur
 	$playlists = getPlaylist($bdd, $_SESSION['pseudo']);
 }
