@@ -19,17 +19,18 @@
 <?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] ){ ?>
 
   
-  <li><button data-toggle="modal" data-target="#addSong" title="ajouter une chanson">Ajouter une chanson</button></li>
-  <li><a href="#" title="créer playlist">Créer playlist</a></li>
+  <li><button class="btn btn-link" data-toggle="modal" data-target="#addSong" title="ajouter une chanson">Ajouter une chanson</button></li>
+  <li><button class="btn btn-link" data-toggle="modal" data-target="#creerPlaylist" title="créer playlist">Créer playlist</button></li>
   <ul>
       
   <?php
-            require_once 'vues/add_song.html';
+   require_once 'vues/add_song.html';
+   require_once 'vues/createplaylist.html';
    while ($playlist = $playlists->fetch_assoc()) {
 		?>  
 		<li> 
 			<?php echo $playlist['nom_playlist'] ;?> 
-			<a href="./?action=deletePlaylist&nom=<?= $playlist['nom_playlist']?>" >Supprimer</a>
+			<a href="./?action=deletePlaylist&nom=<?= $playlist['nom_playlist']?>" ><span class="glyphicon glyphicon-trash"></span></a>
 		</li>
 	<?php }
 	
@@ -39,5 +40,5 @@
 <?php } ?>  
 
   </ul>
-        </div>
+ </div>
 </div>

@@ -16,7 +16,7 @@ while ($chanson=$chansons->fetch_assoc()) {
         
         <td>
             <?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] ){ 
-                echo "<a href='addSongToPlaylist.php'> ajouter à la playlist </a>";
+                echo "<a class='btn' href='addSongToPlaylist.php'> <span class='glyphicon glyphicon-plus-sign'></span> </a>";
             }
 ?>
             
