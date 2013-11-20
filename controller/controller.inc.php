@@ -176,6 +176,10 @@ if(!empty($action)){
 			$_SESSION['url']="#";
 			$_SESSION['album']=$song['album'];
 			$_SESSION['annee']=$song['annee'];
+                        echo "----<br>";
+                        echo $_SESSION['id_chanson'];
+                        $comments=  getComments($bdd, $_SESSION['id_chanson']);
+                        print_r($comments);
 
 			break;
 				

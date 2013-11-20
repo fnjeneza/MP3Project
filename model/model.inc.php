@@ -215,3 +215,10 @@ function getGenre($bdd){
 	$req="SELECT DISTINCT genre FROM chanson ";
 	return $bdd->query($req);
 }
+
+function getComments($bdd, $id){
+    //$req="SELECT intitule FROM commentaire WHERE id_chanson='$id' ";
+    $req="SELECT intitule, url_photo FROM utilisateur, commentaire WHERE id_chanson='$id' AND utilisateur.pseudo=commentaire.pseudo_commentateur";
+    return $bdd->query($req);
+  
+}

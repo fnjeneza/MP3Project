@@ -20,7 +20,8 @@ require_once 'vues/headerBar.php';
                 require_once 'vues/comments.html';
                 require_once 'vues/list_view.php';
                 //require_once 'vues/createplaylist.html';
-                require_once 'vues/sideBar.php';
+                require_once 'vues/listComments.php'; 
+                //require_once 'vues/sideBar.php';
                 
                 
                 
