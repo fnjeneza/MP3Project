@@ -1,10 +1,5 @@
 
-<table>
-<tr>
-<th>Titre</th>
-<th>Artiste</th>
-<th></th>
-</tr>
+<table class="table table-hover table-striped table-condensed" >
 
 <?php
 

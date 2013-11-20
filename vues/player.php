@@ -1,9 +1,11 @@
-
-<div>
+<div class="well">
        <?php if( isset ($_SESSION['titre'])){?>
-	<img alt="Nom de l'artiste" src="<?php echo $_SESSION['url_image'] ?>"
-		width="100" height="100"><br> 
-    
+<div class="row">
+    <div class="col-md-2">
+        <img class="img-rounded" alt="Nom de l'artiste" src="<?php echo $_SESSION['url_image'] ?>"
+		width="100" height="100">
+    </div>
+    <div class="col-lg-4">
 	<?=$_SESSION['titre']?><br>
 	<a href="<?= $_SESSION['url'] ?>" target="_blank"><?=$_SESSION['artiste'] ?></a><br> 
 	<?= $_SESSION['genre'] ?><br> 
@@ -18,6 +20,8 @@
 		<param name="flashvars" value="mp3=<?= $_SESSION['url_chanson'] ?>" />
 	</object>
 	<br>
-	<a href="<?= $_SESSION['url_chanson'] ?>" download="<?=$_SESSION['titre']?>" >Download</a>
-	<button>Commenter</button>
+        <a class="btn btn-sm btn-primary" href="<?= $_SESSION['url_chanson'] ?>" download="<?=$_SESSION['titre']?>" ><span class="glyphicon glyphicon-cloud-download" ></span></a>
+	<button class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-comment" ></span></button>
+    </div>
+</div>
 </div>
