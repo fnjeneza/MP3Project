@@ -1,15 +1,18 @@
 <?php 
 if(isset($messageError) && !empty ($messageError)){
-	echo"<div>
-	<h5> $messageError </h5>
+	echo"<div class='alert alert-danger alert-dismissable'>
+			<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+			$messageError 
         </div>";
+	unset($messageError);
 
 }
 elseif(isset($messageOk) && !empty($messageOk)) {
-	
-       echo" <div>
-	<h5> $messageOk </h5>
-        </div>";
+	echo"<div class='alert alert-success alert-dismissable'>
+			<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+			$messageOk 
+		</div>";
+	unset($messageOk);
 
 }
 
