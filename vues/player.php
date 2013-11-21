@@ -1,11 +1,11 @@
 <div class="well">
        <?php if( isset ($_SESSION['titre'])){?>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         <img class="img-rounded" alt="Nom de l'artiste" src="<?php echo $_SESSION['url_image'] ?>"
-		width="100" height="100">
+		width="150" height="175">
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-9">
 		<h4><?=$_SESSION['titre']?></h4><br>
 		<a href="<?= $_SESSION['url'] ?>" target="_blank"><?=$_SESSION['artiste'] ?></a><br> 
 		<?= $_SESSION['genre'] ?><br> 
@@ -21,8 +21,9 @@
 		</object>
 		<div style="padding-top: 10px">
 	        <a class="btn btn-primary" href="<?= $_SESSION['url_chanson'] ?>" download="<?=$_SESSION['titre']?>" ><span class="glyphicon glyphicon-cloud-download" ></span></a>
-			<button class="btn btn-primary"><span class="glyphicon glyphicon-comment" ></span></button>
+			<button class="btn btn-primary" data-toggle="collapse" data-target="#comment"><span class="glyphicon glyphicon-comment" ></span></button>
 		</div>
+		<?php require_once 'vues/comments.html';?>
     </div>
 </div>
 </div>
