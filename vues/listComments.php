@@ -1,6 +1,6 @@
 
 <?php
-if(isset($comments) ){
+if(isset($comments) && !empty($comments->num_rows)){
 ?>
 	<div class="panel panel-info">
     <div class="panel-heading">
