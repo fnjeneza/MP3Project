@@ -177,13 +177,14 @@ if(!empty($action)){
 			$_SESSION['album']=$song['album'];
 			$_SESSION['annee']=$song['annee'];
                    
-                        $comments=  getComments($bdd, $_SESSION['id_chanson']);
+			//récuperation des commentaires du morceau en cours de lecture
+            $comments=  getComments($bdd, $_SESSION['id_chanson']);
                     
 
 			break;
 				
 		case 'addPlaylist':
-			//Teste si la playlist existe déjà
+			//Test si la playlist existe déjà
 			 if(playlistExist($bdd, $_GET['nomplaylist'] , $_SESSION['pseudo'])){
 			 	$messageError="La playlist existe déjà";
 			 }
