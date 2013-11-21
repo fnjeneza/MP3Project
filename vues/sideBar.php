@@ -1,16 +1,22 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">Navigation</div>
+    <div class="panel-heading">Navigation</div> 
     <div class="panel-body">
-<ul id="menu">
-  <li><a href="#" title="rechercher">Rechercher</a></li>
+<ul class="nav nav-pills nav-stacked">
+  <li>
+  	<div class="input-group" >
+  		<input type="text" class="form-control" placeholder="Recherche" name="search">
+  		<span class="input-group-btn">
+  			<button class="btn btn-default "> <span class="glyphicon glyphicon-search"></span> Go!</button>
+  		</span>
+  	</div>
+  	</li>
+  	<!--<input type="text" placeholder="Recherche" name="search"> <a href="#" title="rechercher">Rechercher</a> --></li>
   <li><a href="#" title="dernier ajout">Dernier ajout</a></li>
-  
   <li>Genre</li>
  
   <select name="genre">
   <?php 
   while($genre=$genres->fetch_assoc()){
-     //print_r($genre); 
   ?>	
       <option value="<?php echo $genre['genre'];?>"> <?= $genre['genre'] ;?> </option>
   <?php }
