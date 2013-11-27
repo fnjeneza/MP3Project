@@ -8,7 +8,7 @@ require_once 'model/model.inc.php';
 
 $bdd=openConnection();		//ouverture d'une connexion
 
-$chansons=getSongs($bdd);
+
 //récupération de l'action de l'utilisateur
 if(isset($_GET['action']) ){
 	$action=$_GET['action'] ;
@@ -209,15 +209,23 @@ if(!empty($action)){
 			break;
 			
 		case 'getPlaylistSongs':
-			$chansons = getSongFromPlaylists($bdd, $_GET['id_playlist']);
+			$_SESSION['id_playlist'] = $_GET['id_playlist'];
 			break;
 			
 		case 'allSongs':
-			$chansons=getSongs($bdd);
+			unset($_SESSION['id_playlist']);
 			break;
 
 	}
 }
+
+if(isset($_SESSION['id_playlist']) && !empty($_SESSION['id_playlist'])){
+	$chansons= getSongFromPlaylists($bdd, $_SESSION['id_playlist']);
+}
+else{
+	$chansons=getSongs($bdd);
+}
+
   
 //tous les genres existants dans la bdd
 $genres=getGenre($bdd);
