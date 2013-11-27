@@ -207,7 +207,7 @@ function playlistExist($bdd, $nom, $pseudo){
 } 
 
 function getPlaylist($bdd, $pseudo) {
-	$req="SELECT nom_playlist FROM playlist WHERE pseudo='$pseudo'";
+	$req="SELECT id, nom_playlist FROM playlist WHERE pseudo='$pseudo'";
 	return $bdd->query($req);
 }
 
@@ -218,7 +218,11 @@ function getGenre($bdd){
 
 function getComments($bdd, $id){
     //$req="SELECT intitule FROM commentaire WHERE id_chanson='$id' ";
-    $req="SELECT intitule, url_photo FROM utilisateur, commentaire WHERE id_chanson='$id' AND utilisateur.pseudo=commentaire.pseudo_commentateur";
+    $req="SELECT intitule, pseudo_commentateur, date_commentaire, url_photo FROM utilisateur, commentaire WHERE id_chanson='$id' AND utilisateur.pseudo=commentaire.pseudo_commentateur";
     return $bdd->query($req);
-  
+}
+
+function getSongFromPlaylists($bdd, $id_playlist){
+	$req = "SELECT chanson.id ,titre,artiste FROM playlist_chanson, chanson WHERE id_playlist = $id_playlist AND chanson.id = id_chanson";
+	return $bdd->query($req);
 }

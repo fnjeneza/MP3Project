@@ -16,7 +16,8 @@ while ($chanson=$chansons->fetch_assoc()) {
         
         <td>
             <?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] ){ 
-                echo "<a class='btn' href='addSongToPlaylist.php'> <span class='glyphicon glyphicon-plus-sign'></span> </a>";
+				require 'vues/playlists.php';
+            	//echo "<a class='btn' href='addSongToPlaylist.php'> <span class='glyphicon glyphicon-plus-sign'></span> </a>";
             }
 ?>
             

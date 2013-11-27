@@ -180,7 +180,6 @@ if(!empty($action)){
 			//récuperation des commentaires du morceau en cours de lecture
             $comments=  getComments($bdd, $_SESSION['id_chanson']);
                     
-
 			break;
 				
 		case 'addPlaylist':
@@ -204,6 +203,18 @@ if(!empty($action)){
 			deletePlaylist($bdd, $_GET['nom'], $_SESSION['pseudo']);
 			$messageOk="Playlist ".$_GET['nom']." supprimé";
 			break;
+			
+		case 'addToPlaylist':
+			addSongToPlaylist($bdd, $_GET['id_playlist'], $_GET['id_chanson']);
+			break;
+			
+		case 'getPlaylistSongs':
+			$chansons = getSongFromPlaylists($bdd, $_GET['id_playlist']);
+			break;
+			
+		case 'allSongs':
+			$chansons=getSongs($bdd);
+			break;
 
 	}
 }
@@ -213,6 +224,7 @@ $genres=getGenre($bdd);
 if(isset($_SESSION['isConnected']) && $_SESSION['isConnected']){
 	//liste de playlist de l'utilisateur
 	$playlists = getPlaylist($bdd, $_SESSION['pseudo']);
+	$playlists2 = getPlaylist($bdd, $_SESSION['pseudo']);
 }
 
 closeConnection($bdd); //fermeture de la connexion

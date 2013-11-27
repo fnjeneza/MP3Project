@@ -12,7 +12,10 @@ if(isset($comments) && !empty($comments->num_rows)){
         while( $comment=$comments->fetch_assoc() ){
   ?>
       <li class="media">
-          <img class="media-object pull-left" src="<?=$comment['url_photo']?>" width=30 height=30 >
+          <img class="media-object pull-left" src="<?=$comment['url_photo']?>" width=40 height=40 >
+          <div class="media-title">
+          	<?php echo $comment['pseudo_commentateur']." ".$comment['date_commentaire'];?>
+          </div>
           <div class="media-body">
             <?=$comment['intitule']?>
           </div>

@@ -32,10 +32,15 @@
   <?php
    require_once 'vues/add_song.html';
    require_once 'vues/createplaylist.html';
+   ?>
+   <li><a href="?action=allSongs">Toutes les chansons</a></li>
+   <?php
    while ($playlist = $playlists->fetch_assoc()) {
 		?>  
 		<li> 
-			<?php echo $playlist['nom_playlist'] ;?> 
+		<a href="./?action=getPlaylistSongs&id_playlist=<?= $playlist['id'] ;?>">
+			<?= $playlist['nom_playlist'] ;?> 
+		</a>
 			<a href="./?action=deletePlaylist&nom=<?= $playlist['nom_playlist']?>" ><span class="glyphicon glyphicon-trash"></span></a>
 		</li>
 	<?php }
