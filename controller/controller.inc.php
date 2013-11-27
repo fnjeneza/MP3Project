@@ -232,7 +232,6 @@ $genres=getGenre($bdd);
 if(isset($_SESSION['isConnected']) && $_SESSION['isConnected']){
 	//liste de playlist de l'utilisateur
 	$playlists = getPlaylist($bdd, $_SESSION['pseudo']);
-	$playlists2 = getPlaylist($bdd, $_SESSION['pseudo']);
 }
 
 closeConnection($bdd); //fermeture de la connexion
