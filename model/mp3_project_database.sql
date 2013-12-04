@@ -82,8 +82,8 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `date_commentaire` date NOT NULL,
   `id_chanson` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY(`pseudo_commentateur`) REFERENCES utilisateur(`pseudo`),
-  FOREIGN KEY(`id_chanson`) REFERENCES chanson(`id`)
+  FOREIGN KEY(`pseudo_commentateur`) REFERENCES utilisateur(`pseudo`) ON DELETE CASCADE,
+  FOREIGN KEY(`id_chanson`) REFERENCES chanson(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `playlist` (
   `nom_playlist` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY(`pseudo`) REFERENCES utilisateur(`pseudo`)
+  FOREIGN KEY(`pseudo`) REFERENCES utilisateur(`pseudo`) ON DELETE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -112,9 +112,10 @@ CREATE TABLE IF NOT EXISTS `playlist_chanson` (
   `id_chanson` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY(`id_chanson`) REFERENCES chanson(`id`),
-  FOREIGN KEY(`id_playlist`) REFERENCES playlist(`id`)
+  FOREIGN KEY(`id_playlist`) REFERENCES playlist(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+ALTER TABLE chanson ADD url_wiki varchar(255);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
