@@ -53,14 +53,14 @@ function addArtist($bdd, $artiste, $url){
  * @param unknown_type $url_chanson	chemin du morceau sur le serveur
  * @param unknown_type $url_artiste	lien wiki de l'artiste
  */
-function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $url_chanson, $url_artiste ){
+function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $url_chanson, $url_wiki ){
 	
 	if(!artistExist($bdd, $artiste)){		//verfie si l'artiste existe deja dans la bdd
 		addArtist($bdd, $artiste, $url_artiste);	// sinon ajoute l'artiste dans la bdd
 	}
 	
-	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, url_image, url_chanson, date_d_ajout)
-		VALUES ('$titre','$artiste','$genre', $annee, '$album', '$url_image', '$url_chanson', CURDATE() )";
+	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, url_image, url_chanson, date_d_ajout, url_wiki)
+		VALUES ('$titre','$artiste','$genre', $annee, '$album', '$url_image', '$url_chanson', CURDATE(), '$url_wiki' )";
 	$bdd->query($req);
 }
 
@@ -74,6 +74,12 @@ function songExist($bdd, $titre, $artiste){
 	$req="SELECT * FROM chanson WHERE titre='$titre' AND artiste='$artiste'";
 	return empty($bdd->query($req)->num_rows) || $bdd->query($req)->num_rows === 0  ?  false :  true;
 }
+
+function songExistInPlaylist($bdd, $id_playlist, $id_chanson){
+	$req = "SELECT * FROM playlist_chanson WHERE id_playlist = $id_playlist AND id_chanson = $id_chanson";
+	return empty($bdd->query($req)->num_rows) || $bdd->query($req)->num_rows === 0 ? false: true;
+}
+
 
 /**
  * Ajout d'un utilisateur 
@@ -152,7 +158,7 @@ function  getSongs($bdd){
 
 
 function getOneSong($bdd, $id){
-    $req="SELECT artiste, titre, url_image, url_chanson, genre, album, annee FROM chanson where id=$id";
+    $req="SELECT artiste, titre, url_image, url_chanson, genre, album, annee, url_wiki FROM chanson where id=$id";
     return $bdd->query($req);
 }
 /**
@@ -226,3 +232,19 @@ function getSongFromPlaylists($bdd, $id_playlist){
 	$req = "SELECT chanson.id ,titre,artiste FROM playlist_chanson, chanson WHERE id_playlist = $id_playlist AND chanson.id = id_chanson";
 	return $bdd->query($req);
 }
+
+function search_artiste($bdd, $artiste){
+	$req = "SELECT id ,titre,artiste FROM chanson WHERE artiste = '$artiste'";
+	return $bdd->query($req);
+}
+
+function search_titre($bdd, $titre){
+	$req = "SELECT id ,titre,artiste FROM chanson WHERE titre = '$titre'";
+	return $bdd->query($req);
+}
+
+function search_genre($bdd, $genre){
+	$req = "SELECT id ,titre,artiste FROM chanson WHERE genre = '$genre'";
+	return $bdd->query($req);
+}
+
