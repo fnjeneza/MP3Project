@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="container">
-    <a class="navbar-brand" href="">MP3Project</a>
+    <a class="navbar-brand" href="./">MP3Project</a>
 	<?php
 		if(!isset($_SESSION['isConnected'])){
 	?>
