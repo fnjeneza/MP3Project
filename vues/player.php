@@ -21,7 +21,9 @@
 		</object>
 		<div style="padding-top: 10px">
 	        <a class="btn btn-primary" href="<?= $_SESSION['url_chanson'] ?>" download="<?=$_SESSION['titre']?>" ><span class="glyphicon glyphicon-cloud-download" ></span></a>
+			<?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] ){?>
 			<button class="btn btn-primary" data-toggle="collapse" data-target="#comment"><span class="glyphicon glyphicon-comment" ></span></button>
+			<?php }?>
 		</div>
 		<?php require_once 'vues/comments.html';?>
     </div>
