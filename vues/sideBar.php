@@ -3,27 +3,43 @@
     <div class="panel-body">
 <ul class="nav nav-pills nav-stacked">
   <li>
+  <form action="./" method="get" >
   	<div class="input-group" >
   		<input type="text" class="form-control" placeholder="Recherche" name="search">
-  		<span class="input-group-btn">
-  			<button class="btn btn-default "> <span class="glyphicon glyphicon-search"></span> Go!</button>
-  		</span>
-  	</div>
+  		<div class="input-group-btn">
+  			<!-- <button name="action" value="search_artiste" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> Go!</button>-->
+  			<div class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="glyphicon glyphicon-search"></span> <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			    <li><button  class="btn btn-link" name="action" value="search_artiste" >Artiste</button></li>
+			    <li><button class="btn btn-link" name="action" value="search_titre" >Titre</button></li>
+			  </ul>
+			</div>
+  		</div>
+  		</div>
+  	</form>
   	</li>
-  	<!--<input type="text" placeholder="Recherche" name="search"> <a href="#" title="rechercher">Rechercher</a> --></li>
-  <li><a href="#" title="dernier ajout">Dernier ajout</a></li>
-  <li>Genre</li>
+  <!--  <li><a href="#" title="dernier ajout">Dernier ajout</a></li> -->
+  <li>
+	<div class="btn-group">
+	  <!--  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	    Action <span class="caret"></span>
+	  </button>-->
+	  <button class="btn btn-link  dropdown-toggle"  data-toggle="dropdown" > Genre <span class="caret"></span> </button>
+	  <ul class="dropdown-menu" role="menu">
+	  <?php 
+		  while($genre=$genres->fetch_assoc()){
+		  ?>	
+		      <li> <a href = "./?action=search_genre&search=<?php echo $genre['genre'];?>"> <?= $genre['genre'] ;?> </a></li>
+		  <?php }
+		  ?>
+	  </ul>
+	</div>  
+  </li>
  
-  <select name="genre">
-  <?php 
-  while($genre=$genres->fetch_assoc()){
-  ?>	
-      <option value="<?php echo $genre['genre'];?>"> <?= $genre['genre'] ;?> </option>
-  <?php }
-  ?>
- </select>
 <?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] ){ ?>
-
   
   <li><button class="btn btn-link" data-toggle="modal" data-target="#addSong" title="ajouter une chanson">Ajouter une chanson</button></li>
   <li><button class="btn btn-link" data-toggle="modal" data-target="#creerPlaylist" title="créer playlist">Créer playlist</button></li>
