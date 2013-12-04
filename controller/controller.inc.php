@@ -173,12 +173,13 @@ if(!empty($action)){
 			$_SESSION['artiste']=$song['artiste'];
 			$_SESSION['titre']=$song['titre'];
 			$_SESSION['genre']=$song['genre'];
-			$_SESSION['url']="#";
+			$_SESSION['url']=$song['url_wiki'];
 			$_SESSION['album']=$song['album'];
 			$_SESSION['annee']=$song['annee'];
                    
 			//récuperation des commentaires du morceau en cours de lecture
             $comments=  getComments($bdd, $_SESSION['id_chanson']);
+            //$_SESSION['comments'] =  getComments($bdd, $_SESSION['id_chanson']);
                     
 			break;
 				
@@ -205,6 +206,11 @@ if(!empty($action)){
 			break;
 			
 		case 'addToPlaylist':
+			//verifie si la chanson existe deja dans la bdd
+			if(songExistInPlaylist($bdd, $_GET['id_playlist'], $_GET['id_chanson'])){
+				$messageError="Cette chanson existe déjà dans la playlist";
+				break;
+			}
 			addSongToPlaylist($bdd, $_GET['id_playlist'], $_GET['id_chanson']);
 			break;
 			
@@ -219,7 +225,22 @@ if(!empty($action)){
 	}
 }
 
-if(isset($_SESSION['id_playlist']) && !empty($_SESSION['id_playlist'])){
+
+if (isset($_GET['search']) && !empty($_GET['search'])){
+	unset($_SESSION['id_playlist']);
+	switch ($_GET['action']){
+		case 'search_artiste':
+			$chansons  = search_artiste($bdd, $_GET['search']);
+			break;
+		case 'search_titre':
+			$chansons  = search_titre($bdd, $_GET['search']);
+			break;
+		case 'search_genre':
+			$chansons = search_genre($bdd, $_GET['search']);
+			break;
+	}
+}
+elseif(isset($_SESSION['id_playlist']) && !empty($_SESSION['id_playlist'])){
 	$chansons= getSongFromPlaylists($bdd, $_SESSION['id_playlist']);
 }
 else{
