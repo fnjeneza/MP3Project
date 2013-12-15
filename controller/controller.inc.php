@@ -22,15 +22,20 @@ if(!empty($action)){
 		case 'addSong':
 
 			$url_image="multimedia/images/index.jpeg";	//chemin de l'image par defaut
-			//$url_chanson;
-
+			
 
 			//verifie si la chanson existe deja dans la bdd
 			if(songExist($bdd, $_POST['titre'], $_POST['artiste'])){
 				$messageError="Cette chanson existe déjà";
 				break;
 			}
-
+			
+			$_titre = str_replace("'", "\'", $_POST['titre']);
+			$_genre = str_replace("'", "\'", $_POST['genre']);
+			$_album = str_replace("'", "\'", $_POST['album']);
+			$_artiste = str_replace("'", "\'", $_POST['artiste']);
+			$_url = str_replace("'", "\'", $_POST['url']);
+			
 			//enregistrement du fichier son
 			if(isset($_FILES['chanson']) && !$_FILES['chanson']['error']){
 
@@ -38,7 +43,7 @@ if(!empty($action)){
 				if($_FILES['chanson']['type']=="audio/mpeg" || $_FILES['chanson']['type']=="audio/mp3"){
 
 					$path_chanson=BASE_MP3.$_POST['titre'].$_POST['artiste'].".mp3";
-					$url_chanson="multimedia/sounds/".$_POST['titre'].$_POST['artiste'].".mp3";
+					$url_chanson="multimedia/sounds/".$_POST['titre'].$_artiste.".mp3";
 					move_uploaded_file($_FILES['chanson']['tmp_name'], $path_chanson);
 				}
 				else{
@@ -76,14 +81,14 @@ if(!empty($action)){
 
 			//ajout de la chanson
 			addSong($bdd,
-					$_POST['titre'],
-					$_POST['artiste'],
-					$_POST['genre'],
+					$_titre,
+					$_artiste,
+					$_genre,
 					$_POST['annee'],
-					$_POST['album'],
+					$_album,
 					$url_image,
 					$url_chanson,
-					$_POST['url']);
+					$_url);
 				
 			$messageOk="Chanson ajoutée avec succès!";
 

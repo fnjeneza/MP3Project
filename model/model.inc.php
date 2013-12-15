@@ -56,7 +56,7 @@ function addArtist($bdd, $artiste, $url){
 function addSong($bdd, $titre, $artiste, $genre, $annee, $album, $url_image, $url_chanson, $url_wiki ){
 	
 	if(!artistExist($bdd, $artiste)){		//verfie si l'artiste existe deja dans la bdd
-		addArtist($bdd, $artiste, $url_artiste);	// sinon ajoute l'artiste dans la bdd
+		addArtist($bdd, $artiste, $url_wiki);	// sinon ajoute l'artiste dans la bdd
 	}
 	
 	$req="INSERT INTO chanson (titre, artiste, genre, annee, album, url_image, url_chanson, date_d_ajout, url_wiki)

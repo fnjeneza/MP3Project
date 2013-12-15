@@ -66,7 +66,7 @@
 		}
 		else{ 
                     echo "<form action='./' method='POST'>";
-                    echo $_SESSION['pseudo'].' <button class="btn btn-danger navbar-btn navbar-right" type="submit" name="action" value="deconnectUser">Déconnexion</button>';
+                    echo ' <button class="btn btn-danger navbar-btn navbar-right" type="submit" name="action" value="deconnectUser">Déconnexion</button>';
                     echo "</form>";
 		}
 	?>
